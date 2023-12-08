@@ -1,0 +1,9 @@
+﻿  Corrector.cpp
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(273,16): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(274,78): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(284,16): warning C4018: '<=': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(287,17): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(297,16): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(309,16): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(313,17): warning C4018: '<': no coinciden signed/unsigned
+  quisodecir.vcxproj -> C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\Debug\quisodecir.exe

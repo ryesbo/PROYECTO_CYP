@@ -1,0 +1,14 @@
+﻿  Corrector.cpp
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(321,16): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(322,78): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(332,16): warning C4018: '<=': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(335,17): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(345,16): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(357,16): warning C4018: '<': no coinciden signed/unsigned
+C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\quisodecir\Corrector.cpp(361,17): warning C4018: '<': no coinciden signed/unsigned
+  Generando código
+  Generación de código finalizada
+  0 of 12 functions ( 0.0%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
+  quisodecir.vcxproj -> C:\Users\HP\3D Objects\CYP06_PROYECTO\quisodecirAlumnos\Release\quisodecir.exe
