@@ -108,6 +108,30 @@ void	Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 
 		// Actualiza iNumElementos con la cantidad de palabras únicas
 		iNumElementos = palabrauni;
+
+		// Resto de la lógica de procesamiento (ordenar y eliminar duplicados)
+		bool ordenado = false;
+		for (j = 0; j < iNumElementos - 1 && ordenado == false; j++)
+		{
+			ordenado = true;
+			for (k = 0; k < iNumElementos - j - 1; k++)
+			{
+				if (strcmp(szPalabras[k], szPalabras[k + 1]) > 0)
+				{
+					ordenado = false;
+					// Intercambia palabras
+					char almatem[TAMTOKEN];
+					strcpy_s(almatem, TAMTOKEN, szPalabras[k]);
+					strcpy_s(szPalabras[k], TAMTOKEN, szPalabras[k + 1]);
+					strcpy_s(szPalabras[k + 1], TAMTOKEN, almatem);
+
+					// Intercambia frecuencias
+					frecuen = iEstadisticas[k];
+					iEstadisticas[k] = iEstadisticas[k + 1];
+					iEstadisticas[k + 1] = frecuen;
+				}
+			}
+		}
 		// Elimina duplicados
 		palabrauni = 0;
 		for (k = 1; k < iNumElementos; k++)
