@@ -51,11 +51,10 @@ void	Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 			printf("\nsipi si abre\n");
 		}
 		indicepd = 0;
-		while (fgets(linea, sizeof(linea), fpDicc) != NULL) //(!feof(fpDicc))
+		while (fgets(linea, sizeof(linea), fpDicc) != NULL)
 		{
-			//fgets(linea, sizeof(linea), fpDicc);
 
-			for (i = 0; linea[i] != '\0'; i++)//for (i = 0; i < strlen(linea); i++)
+			for (i = 0; linea[i] != '\0'; i++)
 			{
 				if (linea[i] == ' ' || linea[i] == '\n' || linea[i] == '\t' || linea[i] == '\r' || linea[i] == '.' || linea[i] == ',' || linea[i] == ';')
 				{
@@ -63,10 +62,7 @@ void	Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 					{
 						palabradetec[indicepd] = '\0';
 
-						/*/for (j = 0; j < indicepd; j++)
-						{
-							palabradetec[j] = tolower(palabradetec[j]);
-						}*/
+						
 
 						strcpy_s(szPalabras[iNumElementos], TAMTOKEN, palabradetec);
 						iEstadisticas[iNumElementos] = 1;
