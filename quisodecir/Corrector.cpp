@@ -135,9 +135,9 @@ void	Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 	
 
 	//Sustituya estas lineas por su código
-	*iNumElementos = 1;
-	strcpy_s(szPalabras[0],"AquiVaElDiccionario");
-	iEstadisticas[0] = 1;  la primer palabra aparece solo una vez.
+	//*iNumElementos = 1;
+	//strcpy_s(szPalabras[0],"AquiVaElDiccionario");
+	//iEstadisticas[0] = 1;  la primer palabra aparece solo una vez.
 //}
 
 
