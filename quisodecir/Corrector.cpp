@@ -105,19 +105,7 @@ void	Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[
 					}
 				}
 			}
-			for (k = 1; k < iNumElementos; k++)
-			{
-				if (strcmp(szPalabras[k], szPalabras[k - 1]) == 0)
-				{
-					iEstadisticas[palabrauni] += iEstadisticas[k];
-				}
-				else
-				{
-					palabrauni++;
-					strcpy_s(szPalabras[palabrauni], TAMTOKEN, szPalabras[k]);
-					iEstadisticas[palabrauni] = iEstadisticas[k];
-				}
-			}
+		
 
 			iNumElementos = palabrauni + 1;
 		}
