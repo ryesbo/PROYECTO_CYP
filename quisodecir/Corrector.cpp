@@ -184,7 +184,7 @@ void	ClonaPalabras(
 	int& iNumSugeridas)						//Numero de elementos en la lista
 	
 {
-	int i, j, a, k;
+	/*int i, j, a, k;
 	iNumSugeridas = 0;
 
 	// Operación de sustitución
@@ -249,7 +249,7 @@ void	ClonaPalabras(
 				strcpy_s(szPalabrasSugeridas[j + 1], TAMTOKEN, temp);
 			}
 		}
-	}
+	}*/
 	//Sustituya estas lineas por su código
 	//strcpy_s(szPalabrasSugeridas[0], szPalabraLeida); //lo que sea que se capture, es sugerencia
 	//iNumSugeridas = 1;				//Una sola palabra sugerida
