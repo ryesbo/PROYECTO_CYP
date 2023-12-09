@@ -28,95 +28,112 @@
 void	Diccionario(char* szNombre, char szPalabras[][TAMTOKEN], int iEstadisticas[], int& iNumElementos)
 
 
- {
+{
 	FILE* fpDicc;
-	char linea[55555];
-	char palabradetec[TAMTOKEN];
-	char almatem[TAMTOKEN];
+	char* buffer;
+	long fileSize;
 	int i, j, k;
-	int indicepd;
-	int palabrauni;
+	int existIndex;
 	int frecuen;
-	iNumElementos = 0;
-	//abre arch
-	if (depuracion == 1)
-	{
-		printf(" % s", szNombre);
-	}
-	fopen_s(&fpDicc, szNombre, "r");
+	fopen_s(&fpDicc, szNombre, "rb");
+
 	if (fpDicc != NULL)
 	{
-		if (depuracion == 1)
-		{
-			printf("\nsipi si abre\n");
-		}
-		indicepd = 0;
-		while (fgets(linea, sizeof(linea), fpDicc) != NULL)
-		{
+		// Obtiene el tamaño del archivo
+		fseek(fpDicc, 0, SEEK_END);
+		fileSize = ftell(fpDicc);
+		fseek(fpDicc, 0, SEEK_SET);
 
-			for (i = 0; linea[i] != '\0'; i++)
-			{
-				if (linea[i] == ' ' || linea[i] == '\n' || linea[i] == '\t' || linea[i] == '\r' || linea[i] == '.' || linea[i] == ',' || linea[i] == ';')
-				{
-					if (indicepd > 0)
-					{
-						palabradetec[indicepd] = '\0';
+		// Lee el archivo completo en memoria
+		buffer = (char*)malloc(fileSize + 1);
+		fread(buffer, 1, fileSize, fpDicc);
+		buffer[fileSize] = '\0';
 
-						
-
-						strcpy_s(szPalabras[iNumElementos], TAMTOKEN, palabradetec);
-						iEstadisticas[iNumElementos] = 1;
-						indicepd = 0;
-						iNumElementos++;
-					}
-				}
-				else
-				{
-					if (linea[i] != '(' && linea[i] != ')')
-					{
-						palabradetec[indicepd] = linea[i];
-						indicepd++;
-					}
-				}
-			}
-			if (indicepd > 0)
-			{
-				palabradetec[indicepd] = '\0';
-				strcpy_s(szPalabras[iNumElementos], TAMTOKEN, palabradetec);
-				iEstadisticas[iNumElementos] = 1;
-				iNumElementos++;
-			}
-			palabrauni = 0;
-			bool ordenado = false;
-			for (j = 0; j < iNumElementos - 1 && ordenado == false; j++)
-			{
-				ordenado = true;
-				for (k = 0; k < iNumElementos - j - 1; k++)
-				{
-					if (strcmp(szPalabras[k], szPalabras[k + 1]) > 0)
-					{
-						ordenado = false;
-						strcpy_s(almatem, TAMTOKEN, szPalabras[k]);
-						strcpy_s(szPalabras[k], TAMTOKEN, szPalabras[k + 1]);
-						strcpy_s(szPalabras[k + 1], TAMTOKEN, almatem);
-						frecuen = iEstadisticas[k];
-						iEstadisticas[k] = iEstadisticas[k + 1];
-						iEstadisticas[k + 1] = frecuen;
-					}
-				}
-			}
-		
-
-			iNumElementos = palabrauni + 1;
-		}
 		fclose(fpDicc);
+
+		// Procesa el contenido en memoria
+		int indicepd = 0;
+		int palabrauni = 0;
+		char palabradetec[TAMTOKEN];
+
+		for (i = 0; buffer[i] != '\0'; i++)
+		{
+			if (buffer[i] == ' ' || buffer[i] == '\n' || buffer[i] == '\t' || buffer[i] == '\r' || buffer[i] == '.' || buffer[i] == ',' || buffer[i] == ';')
+			{
+				if (indicepd > 0)
+				{
+					palabradetec[indicepd] = '\0';
+
+					for (j = 0; j < indicepd; j++)
+					{
+						palabradetec[j] = tolower(palabradetec[j]);
+					}
+
+					// Verifica si la palabra ya existe en el array
+					existIndex = -1;
+					for (k = 0; k < palabrauni; k++)
+					{
+						if (strcmp(szPalabras[k], palabradetec) == 0)
+						{
+							existIndex = k;
+							break;
+						}
+					}
+
+					if (existIndex != -1)
+					{
+						// La palabra ya existe, incrementa la estadística
+						iEstadisticas[existIndex]++;
+					}
+					else
+					{
+						// Agrega la nueva palabra al array
+						strcpy_s(szPalabras[palabrauni], TAMTOKEN, palabradetec);
+						iEstadisticas[palabrauni] = 1;
+						palabrauni++;
+					}
+
+					indicepd = 0;
+				}
+			}
+			else
+			{
+				if (buffer[i] != '(' && buffer[i] != ')')
+				{
+					palabradetec[indicepd] = buffer[i];
+					indicepd++;
+				}
+			}
+		}
+
+		// Actualiza iNumElementos con la cantidad de palabras únicas
+		iNumElementos = palabrauni;
+		// Elimina duplicados
+		palabrauni = 0;
+		for (k = 1; k < iNumElementos; k++)
+		{
+			if (strcmp(szPalabras[k], szPalabras[k - 1]) == 0)
+			{
+				iEstadisticas[palabrauni] += iEstadisticas[k];
+			}
+			else
+			{
+				palabrauni++;
+				strcpy_s(szPalabras[palabrauni], TAMTOKEN, szPalabras[k]);
+				iEstadisticas[palabrauni] = iEstadisticas[k];
+			}
+		}
+
+		iNumElementos = palabrauni + 1;
+
+		free(buffer);
 	}
 	else
 	{
 		if (depuracion == 1)
 			printf("\nnopi no abre\n");
 	}
-	
+}
 
 	//Sustituya estas lineas por su código
 	//*iNumElementos = 1;
@@ -164,7 +181,7 @@ void	ListaCandidatas		(
 ******************************************************************************************************************/
 void	ClonaPalabras(
 	char* szPalabraLeida,						// Palabra a clonar
-	char	szPalabras Sugeridas[][TAMTOKEN], 	//Lista de palabras clonadas
+	char	szPalabrasSugeridas[][TAMTOKEN], 	//Lista de palabras clonadas
 	int& iNumSugeridas)						//Numero de elementos en la lista
 	
 {
